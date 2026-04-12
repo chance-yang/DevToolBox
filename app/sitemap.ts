@@ -3,6 +3,8 @@ import { tools } from "@/lib/tools";
 import { locales } from "@/lib/i18n";
 import { BASE_URL } from "@/lib/seo";
 
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const entries: MetadataRoute.Sitemap = [];
 
