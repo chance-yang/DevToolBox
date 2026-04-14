@@ -3,6 +3,7 @@
 import { useState, useMemo } from "react";
 import { useDict } from "@/lib/DictContext";
 import ToolLayout from "@/components/tools/ToolLayout";
+import ToolContent from "@/components/tools/ToolContent";
 
 export default function RegexTesterPage() {
   const t = useDict().tools["regex-tester"];
@@ -89,10 +90,7 @@ export default function RegexTesterPage() {
           </div>
         </div>
       )}
-      <section className="space-y-2 text-sm text-zinc-500 dark:text-zinc-400">
-        <h2 className="text-base font-semibold text-foreground">{t.faq_title}</h2>
-        <p>{t.faq_text}</p>
-      </section>
+      <ToolContent toolKey="regex-tester" />
     </ToolLayout>
   );
 }

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useDict } from "@/lib/DictContext";
 import ToolLayout from "@/components/tools/ToolLayout";
 import CopyButton from "@/components/tools/CopyButton";
+import ToolContent from "@/components/tools/ToolContent";
 
 export default function UrlEncoderPage() {
   const t = useDict().tools["url-encoder"];
@@ -42,10 +43,7 @@ export default function UrlEncoderPage() {
         <button onClick={() => { setInput(output); setOutput(""); }} className="rounded-lg border border-zinc-200 bg-white px-4 py-2 text-sm font-medium hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 dark:hover:bg-zinc-700">{t.swap}</button>
         <button onClick={() => { setInput(""); setOutput(""); }} className="rounded-lg border border-zinc-200 bg-white px-4 py-2 text-sm font-medium hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 dark:hover:bg-zinc-700">{t.clear}</button>
       </div>
-      <section className="space-y-2 text-sm text-zinc-500 dark:text-zinc-400">
-        <h2 className="text-base font-semibold text-foreground">{t.faq_title}</h2>
-        <p>{t.faq_text}</p>
-      </section>
+      <ToolContent toolKey="url-encoder" />
     </ToolLayout>
   );
 }

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useDict } from "@/lib/DictContext";
 import ToolLayout from "@/components/tools/ToolLayout";
 import CopyButton from "@/components/tools/CopyButton";
+import ToolContent from "@/components/tools/ToolContent";
 
 function formatDate(d: Date) {
   return {
@@ -82,10 +83,7 @@ export default function TimestampPage() {
           </div>
         </div>
       )}
-      <section className="space-y-2 text-sm text-zinc-500 dark:text-zinc-400">
-        <h2 className="text-base font-semibold text-foreground">{t.faq_title}</h2>
-        <p>{t.faq_text}</p>
-      </section>
+      <ToolContent toolKey="timestamp" />
     </ToolLayout>
   );
 }

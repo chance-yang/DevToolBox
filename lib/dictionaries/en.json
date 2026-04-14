@@ -10,10 +10,121 @@
     "footer": "DevToolBox. Free developer tools — no sign-up required.",
     "search": "Search tools..."
   },
+  "nav": {
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "about": "About"
+  },
+  "legal": {
+    "privacy": {
+      "title": "Privacy Policy",
+      "updated": "Last updated: April 2026",
+      "sections": [
+        {
+          "heading": "1. Overview",
+          "body": "DevToolBox (\"we\", \"our\", \"us\") operates zhujiuyin.com. This page explains what information we collect, how we use it, and the choices you have. By using the site you agree to this policy."
+        },
+        {
+          "heading": "2. Data you provide to the tools",
+          "body": "Every tool on this site runs entirely in your browser. Text you paste into the JSON formatter, Base64 encoder, URL encoder, regex tester, or timestamp converter is processed locally. We do not upload, log, or store your tool input on any server."
+        },
+        {
+          "heading": "3. Cookies and local storage",
+          "body": "We use cookies and browser local storage to remember your UI preferences (language, theme). These do not personally identify you."
+        },
+        {
+          "heading": "4. Analytics",
+          "body": "We may use privacy-respecting analytics (such as Google Analytics) to understand aggregate traffic patterns. Analytics cookies collect anonymous data such as page visited, referrer, device type, and approximate region."
+        },
+        {
+          "heading": "5. Advertising and Google AdSense",
+          "body": "This site is served with advertising from Google AdSense. Google and its partners may use cookies (including the DoubleClick cookie) to serve ads based on your prior visits to this site and other sites on the internet. You can opt out of personalized advertising at https://www.google.com/settings/ads. For more on how Google uses advertising data, see https://policies.google.com/technologies/ads."
+        },
+        {
+          "heading": "6. Third-party services",
+          "body": "Our pages may load resources from Google (AdSense, Fonts, Analytics) and our CDN provider Cloudflare. These providers process standard request metadata such as IP address and user-agent to deliver the service."
+        },
+        {
+          "heading": "7. Children's privacy",
+          "body": "DevToolBox is not directed to children under 13. We do not knowingly collect personal information from children."
+        },
+        {
+          "heading": "8. Changes",
+          "body": "We may update this policy from time to time. Material changes will be reflected by updating the \"Last updated\" date at the top of this page."
+        },
+        {
+          "heading": "9. Contact",
+          "body": "Questions about this policy? Reach us at contact@zhujiuyin.com."
+        }
+      ]
+    },
+    "terms": {
+      "title": "Terms of Service",
+      "updated": "Last updated: April 2026",
+      "sections": [
+        {
+          "heading": "1. Acceptance",
+          "body": "By accessing or using DevToolBox you agree to be bound by these Terms. If you do not agree, do not use the site."
+        },
+        {
+          "heading": "2. The service",
+          "body": "DevToolBox provides free, browser-based developer utilities. The service is offered on an \"as is\" and \"as available\" basis without warranties of any kind."
+        },
+        {
+          "heading": "3. Acceptable use",
+          "body": "You agree not to use the site to process unlawful content, attempt to breach security, scrape at a rate that degrades service for others, or reverse-engineer the service."
+        },
+        {
+          "heading": "4. No data liability",
+          "body": "Because tools run in your browser, we do not receive your input. You are responsible for the data you process and for keeping your own backups. We are not liable for any data loss arising from use of the tools."
+        },
+        {
+          "heading": "5. Intellectual property",
+          "body": "The site design, code, and branding are owned by DevToolBox. You may not copy, modify, or redistribute them without permission."
+        },
+        {
+          "heading": "6. Advertising",
+          "body": "The site may display third-party advertisements. We are not responsible for the content of advertisements or the practices of advertisers."
+        },
+        {
+          "heading": "7. Limitation of liability",
+          "body": "To the fullest extent permitted by law, DevToolBox shall not be liable for any indirect, incidental, or consequential damages arising out of use of the site."
+        },
+        {
+          "heading": "8. Changes",
+          "body": "We may revise these Terms at any time. Continued use after changes means you accept the revised Terms."
+        },
+        {
+          "heading": "9. Contact",
+          "body": "Questions about these Terms? Reach us at contact@zhujiuyin.com."
+        }
+      ]
+    },
+    "about": {
+      "title": "About DevToolBox",
+      "intro": "DevToolBox is a free collection of utilities for software developers. Every tool runs entirely in your browser — nothing is uploaded to a server.",
+      "mission_title": "Mission",
+      "mission_body": "We believe developer utilities should be instant, trustworthy, and private. No sign-up, no account, no tracking of your input.",
+      "features_title": "What's inside",
+      "features": [
+        "JSON Formatter — format, minify, validate, and explore JSON with a tree view",
+        "Base64 Encode / Decode — convert text to Base64 and back, with full Unicode support",
+        "URL Encoder / Decoder — encode and decode URLs and query-string parameters",
+        "Regex Tester — test regular expressions with real-time match highlighting",
+        "Timestamp Converter — convert between Unix timestamps and human-readable dates"
+      ],
+      "contact_title": "Contact",
+      "contact_body": "Suggestions, bug reports, or partnerships? Email us at contact@zhujiuyin.com."
+    }
+  },
   "categories": {
     "Formatters": "Formatters",
     "Encoders / Decoders": "Encoders / Decoders",
     "Converters": "Converters"
+  },
+  "tool_content": {
+    "use_cases_title": "Use cases",
+    "faq_title": "Frequently asked questions"
   },
   "tools": {
     "json-formatter": {
@@ -51,6 +162,30 @@
         "Minify JSON to reduce file size",
         "Sort object keys alphabetically",
         "Copy formatted or minified output with one click"
+      ],
+      "use_cases": [
+        "Debug API responses by pretty-printing compact JSON returned from servers.",
+        "Clean up minified JSON from browser DevTools to read it more easily.",
+        "Validate that a config file parses before committing it to a repo.",
+        "Minify JSON to reduce payload size before embedding in HTML or query strings."
+      ],
+      "faq_list": [
+        {
+          "q": "Is my JSON data uploaded anywhere?",
+          "a": "No. Parsing, formatting, and validation happen entirely in your browser with the built-in JSON engine. The data never leaves your device."
+        },
+        {
+          "q": "What is the difference between format and minify?",
+          "a": "Format adds whitespace and indentation for readability. Minify removes all unnecessary whitespace to produce the smallest valid JSON string."
+        },
+        {
+          "q": "Why does my JSON fail to parse?",
+          "a": "JSON is strict: keys and strings must use double quotes, trailing commas are not allowed, and comments are not supported. The error banner shows the position of the first problem."
+        },
+        {
+          "q": "Can I sort object keys?",
+          "a": "Yes — enable \"Sort Keys\" in the toolbar to sort keys alphabetically at every level of the tree."
+        }
       ]
     },
     "base64": {
@@ -69,7 +204,31 @@
       "encode_error": "Failed to encode — input may contain unsupported characters.",
       "decode_error": "Failed to decode — input is not valid Base64.",
       "faq_title": "What is Base64?",
-      "faq_text": "Base64 is a binary-to-text encoding scheme that represents binary data as an ASCII string. It is commonly used to embed binary data in JSON, HTML, emails, and URLs. This tool supports full Unicode text including CJK characters."
+      "faq_text": "Base64 is a binary-to-text encoding scheme that represents binary data as an ASCII string. It is commonly used to embed binary data in JSON, HTML, emails, and URLs. This tool supports full Unicode text including CJK characters.",
+      "use_cases": [
+        "Embed small images or fonts inline in CSS or HTML using data URIs.",
+        "Encode binary payloads so they can travel safely inside JSON or XML.",
+        "Decode Basic Auth tokens (the value after \"Basic \" in the Authorization header).",
+        "Inspect the payload section of a JWT (the middle segment between the dots)."
+      ],
+      "faq_list": [
+        {
+          "q": "Does Base64 encryption protect my data?",
+          "a": "No. Base64 is an encoding, not encryption — anyone can decode it. Use it for transport, not for secrecy."
+        },
+        {
+          "q": "How much larger is Base64 output?",
+          "a": "Base64 expands binary data by roughly 33% (every 3 bytes become 4 characters)."
+        },
+        {
+          "q": "Does this tool support Chinese, Japanese, or emoji?",
+          "a": "Yes. Input is first converted to UTF-8 bytes before encoding, so all Unicode characters round-trip correctly."
+        },
+        {
+          "q": "Why does my decoded result look garbled?",
+          "a": "The input may be URL-safe Base64 (using - and _ instead of + and /) or may contain stray whitespace. Clean the string and try again."
+        }
+      ]
     },
     "url-encoder": {
       "name": "URL Encoder / Decoder",
@@ -86,7 +245,27 @@
       "input_placeholder": "https://example.com/search?q=hello world&lang=en",
       "decode_error": "Error: malformed URI sequence",
       "faq_title": "URL Encoding Explained",
-      "faq_text": "URL encoding (percent-encoding) replaces unsafe characters with a % followed by two hex digits. encodeURIComponent encodes everything except A-Z a-z 0-9 - _ . ! ~ * ' ( ), making it ideal for query parameters. encodeURI preserves URI structure characters like : / ? # &."
+      "faq_text": "URL encoding (percent-encoding) replaces unsafe characters with a % followed by two hex digits. encodeURIComponent encodes everything except A-Z a-z 0-9 - _ . ! ~ * ' ( ), making it ideal for query parameters. encodeURI preserves URI structure characters like : / ? # &.",
+      "use_cases": [
+        "Build query strings that include spaces, symbols, or non-ASCII characters.",
+        "Decode a logged URL to see what a user actually submitted.",
+        "Safely pass a redirect target as a query parameter.",
+        "Debug issues where servers receive unexpected characters."
+      ],
+      "faq_list": [
+        {
+          "q": "What is the difference between encodeURI and encodeURIComponent?",
+          "a": "encodeURI preserves URI-structural characters like : / ? # &, so it is appropriate for whole URLs. encodeURIComponent encodes those characters too, so it is the right choice for a single query parameter value."
+        },
+        {
+          "q": "Why is a space encoded as %20 sometimes and + other times?",
+          "a": "%20 is the standard percent-encoding for a space. The + form is a legacy rule specific to the application/x-www-form-urlencoded body format used by HTML forms."
+        },
+        {
+          "q": "Do I need to encode Chinese characters?",
+          "a": "Yes. Non-ASCII characters must be UTF-8 encoded and then percent-encoded to travel through URLs reliably. This tool handles that automatically."
+        }
+      ]
     },
     "regex-tester": {
       "name": "Regex Tester",
@@ -104,7 +283,27 @@
       "index": "Index",
       "groups": "Groups",
       "faq_title": "About Regex Tester",
-      "faq_text": "This tool lets you test JavaScript-compatible regular expressions in real time. Matches are highlighted in the test string, and capture groups are shown in the results table. Supports global (g), case-insensitive (i), multiline (m), dotAll (s), and unicode (u) flags."
+      "faq_text": "This tool lets you test JavaScript-compatible regular expressions in real time. Matches are highlighted in the test string, and capture groups are shown in the results table. Supports global (g), case-insensitive (i), multiline (m), dotAll (s), and unicode (u) flags.",
+      "use_cases": [
+        "Validate email, phone, or ID formats before shipping a form validator.",
+        "Extract URLs, dates, or numbers from a block of log text.",
+        "Debug a pattern that is not matching as you expect by seeing matches highlighted live.",
+        "Prototype a replacement rule before dropping it into your code editor."
+      ],
+      "faq_list": [
+        {
+          "q": "Which regex dialect does this tool use?",
+          "a": "The JavaScript RegExp engine. Features like lookbehind and named captures are supported in modern browsers."
+        },
+        {
+          "q": "Why does my pattern only match once?",
+          "a": "Without the g (global) flag, only the first match is returned. Enable g to find all matches."
+        },
+        {
+          "q": "How do I match across newlines?",
+          "a": "Use the s flag (dotAll) to make . match newline characters, or use \\s explicitly."
+        }
+      ]
     },
     "timestamp": {
       "name": "Timestamp Converter",
@@ -127,7 +326,27 @@
       "empty_error": "Please enter a timestamp or date string.",
       "parse_error": "Unable to parse input. Try a Unix timestamp or ISO 8601 date.",
       "faq_title": "About Unix Timestamps",
-      "faq_text": "A Unix timestamp is the number of seconds since January 1, 1970 00:00:00 UTC (the Unix Epoch). This tool converts between Unix timestamps (seconds or milliseconds) and human-readable date formats including ISO 8601, UTC, and your local timezone."
+      "faq_text": "A Unix timestamp is the number of seconds since January 1, 1970 00:00:00 UTC (the Unix Epoch). This tool converts between Unix timestamps (seconds or milliseconds) and human-readable date formats including ISO 8601, UTC, and your local timezone.",
+      "use_cases": [
+        "Translate a timestamp from logs or a database into a readable date in your timezone.",
+        "Check whether a timestamp is stored in seconds or milliseconds.",
+        "Generate a timestamp for an API request that requires epoch time.",
+        "Compare two events by seeing their ISO 8601 UTC values side by side."
+      ],
+      "faq_list": [
+        {
+          "q": "Seconds or milliseconds — which should I use?",
+          "a": "Unix standard is seconds. JavaScript's Date.now() uses milliseconds. A 13-digit number is almost always milliseconds; a 10-digit number is seconds."
+        },
+        {
+          "q": "Is a Unix timestamp timezone-aware?",
+          "a": "No. It is always counted from the UTC epoch. Conversion to a local clock time is done when you display it."
+        },
+        {
+          "q": "What is the Year 2038 problem?",
+          "a": "Signed 32-bit timestamps overflow in January 2038. Use 64-bit integers (or a language runtime that does) to stay safe."
+        }
+      ]
     }
   },
   "common": {

@@ -1,21 +1,19 @@
 "use client";
 
-const ADSENSE_ID = "ca-pub-XXXXXXXXXXXXXXXX";
+import AdSlot from "./AdSlot";
 
-/**
- * Ad banner — only renders when a real AdSense ID is configured.
- * Replace the ADSENSE_ID above with your real publisher ID after approval.
- */
-export default function AdBanner({ className = "" }: { className?: string }) {
-  if (ADSENSE_ID === "ca-pub-XXXXXXXXXXXXXXXX") return null;
+const ADSENSE_CLIENT = process.env.NEXT_PUBLIC_ADSENSE_CLIENT;
+const DEFAULT_SLOT = process.env.NEXT_PUBLIC_ADSENSE_SLOT_TOOL_FOOTER;
 
-  return (
-    <div
-      className={`flex items-center justify-center rounded-lg border border-dashed border-zinc-300 bg-zinc-50 text-xs text-zinc-400 dark:border-zinc-700 dark:bg-zinc-900 ${className}`}
-      style={{ minHeight: 90 }}
-    >
-      {/* Replace with real ad unit code after AdSense approval */}
-      Ad Space
-    </div>
-  );
+type Props = {
+  slot?: string;
+  className?: string;
+};
+
+export default function AdBanner({ slot, className = "" }: Props) {
+  const slotId = slot ?? DEFAULT_SLOT;
+  if (!ADSENSE_CLIENT || ADSENSE_CLIENT === "ca-pub-XXXXXXXXXXXXXXXX" || !slotId) {
+    return null;
+  }
+  return <AdSlot slot={slotId} className={className} style={{ minHeight: 90 }} />;
 }

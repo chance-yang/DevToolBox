@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   },
   description:
     "Free online developer tools: JSON formatter, Base64 encoder, URL encoder, regex tester, timestamp converter and more. No sign-up required.",
-  metadataBase: new URL("https://7kezhongzi.com"),
+  metadataBase: new URL("https://zhujiuyin.com"),
 };
 
 export default function RootLayout({

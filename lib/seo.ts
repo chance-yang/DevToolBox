@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 const SITE_NAME = "DevToolBox";
-const BASE_URL = "https://7kezhongzi.com";
+const BASE_URL = "https://zhujiuyin.com";
 
 export function toolMeta(
   title: string,
