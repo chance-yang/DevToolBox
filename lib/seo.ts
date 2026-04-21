@@ -1,7 +1,19 @@
 import type { Metadata } from "next";
+import { locales, defaultLocale } from "@/lib/i18n";
 
 const SITE_NAME = "DevToolBox";
 const BASE_URL = "https://zhujiuyin.com";
+
+function buildLanguageAlternates(path: string) {
+  const match = path.match(/^\/[^/]+(\/.*)?$/);
+  const rest = match?.[1] ?? "";
+  const languages: Record<string, string> = {};
+  for (const l of locales) {
+    languages[l] = `${BASE_URL}/${l}${rest}`;
+  }
+  languages["x-default"] = `${BASE_URL}/${defaultLocale}${rest}`;
+  return languages;
+}
 
 export function toolMeta(
   title: string,
@@ -22,6 +34,24 @@ export function toolMeta(
     },
     alternates: {
       canonical: `${BASE_URL}${path}`,
+      languages: buildLanguageAlternates(path),
+    },
+  };
+}
+
+export function homeMeta(description: string, path: string): Metadata {
+  return {
+    description,
+    openGraph: {
+      title: SITE_NAME,
+      description,
+      url: `${BASE_URL}${path}`,
+      siteName: SITE_NAME,
+      type: "website",
+    },
+    alternates: {
+      canonical: `${BASE_URL}${path}`,
+      languages: buildLanguageAlternates(path),
     },
   };
 }

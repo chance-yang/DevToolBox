@@ -1,7 +1,18 @@
 import { tools, getToolsByCategory } from "@/lib/tools";
 import { getDictionary, type Locale } from "@/lib/i18n";
+import { homeMeta } from "@/lib/seo";
 import ToolCard from "@/components/ui/ToolCard";
 import AdBanner from "@/components/ads/AdBanner";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const dict = await getDictionary(locale as Locale);
+  return homeMeta(dict.site.description, `/${locale}`);
+}
 
 export default async function Home({
   params,
