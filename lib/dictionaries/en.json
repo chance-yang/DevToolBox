@@ -2,11 +2,11 @@
   "site": {
     "name": "DevToolBox",
     "tagline": "Free online developer tools — no sign-up, no installs. Just open and use.",
-    "description": "Free online developer tools: JSON formatter, Base64 encoder, URL encoder, regex tester, timestamp converter and more. No sign-up required.",
+    "description": "Free online developer tools: JSON formatter, Base64, JWT decoder, hash generator, color converter, regex tester, cron parser, HTTP status reference and more. Everything runs in your browser.",
     "about_title": "About DevToolBox",
-    "about_p1": "DevToolBox is a collection of free online utilities for software developers. All tools run entirely in your browser — your data never leaves your device.",
+    "about_p1": "DevToolBox is a curated collection of free online utilities for software developers. Every tool runs entirely in your browser using JavaScript and Web Crypto APIs — your input never leaves your device, never touches a server, and never gets logged.",
     "about_p2_prefix": "Currently featuring",
-    "about_p2_suffix": "tools including JSON formatting, Base64 encoding, URL encoding, regular expression testing, and Unix timestamp conversion. More tools are added regularly.",
+    "about_p2_suffix": "tools across formatters, encoders, converters, generators, and reference pages. The toolbox is updated regularly with practical utilities developers reach for during day-to-day work — debugging an API response, decoding a token, generating a UUID, picking a color, or looking up an HTTP status code without leaving the keyboard.",
     "footer": "DevToolBox. Free developer tools — no sign-up required.",
     "search": "Search tools..."
   },
@@ -26,7 +26,7 @@
         },
         {
           "heading": "2. Data you provide to the tools",
-          "body": "Every tool on this site runs entirely in your browser. Text you paste into the JSON formatter, Base64 encoder, URL encoder, regex tester, or timestamp converter is processed locally. We do not upload, log, or store your tool input on any server."
+          "body": "Every tool on this site runs entirely in your browser. Text you paste into the JSON formatter, Base64 encoder, JWT decoder, hash generator, regex tester, color converter, or any other tool is processed locally with JavaScript and Web Crypto APIs. We do not upload, log, or store your tool input on any server."
         },
         {
           "heading": "3. Cookies and local storage",
@@ -102,29 +102,55 @@
     },
     "about": {
       "title": "About DevToolBox",
-      "intro": "DevToolBox is a free collection of utilities for software developers. Every tool runs entirely in your browser — nothing is uploaded to a server.",
-      "mission_title": "Mission",
-      "mission_body": "We believe developer utilities should be instant, trustworthy, and private. No sign-up, no account, no tracking of your input.",
+      "intro": "DevToolBox is a free, privacy-first collection of utilities for software developers. Every tool runs entirely in your browser — nothing is uploaded to a server, nothing is logged, and nothing is stored beyond the lifetime of the page.",
+      "mission_title": "Our mission",
+      "mission_body": "Most developers reach for the same handful of helpers many times a day: format a JSON response, decode a JWT, generate a UUID, look up an HTTP status code, work out a colour contrast ratio. DevToolBox brings those everyday utilities into one fast, ad-supported, sign-up-free site so you can stay in flow instead of digging through bookmarks.",
+      "principles_title": "Design principles",
+      "principles": [
+        "Local-first: the input you paste stays in your browser tab. We use Web Crypto, the JSON parser, and other built-in browser APIs wherever possible so there is no server round trip.",
+        "Zero friction: no account, no sign-up, no email gate. Open the URL and the tool is ready.",
+        "Bilingual by default: every page is available in English and Simplified Chinese with the same content depth.",
+        "Mobile and keyboard friendly: tools work on phones and tablets, and the most common actions are reachable with one keystroke.",
+        "Stable URLs: each tool has a permanent, descriptive URL so you can bookmark or share it.",
+        "No dark patterns: there are no countdowns, no fake CTAs, no auto-playing media. Ads are clearly separated from tool output."
+      ],
+      "stack_title": "How it is built",
+      "stack_body": "DevToolBox is built with Next.js 16 on the App Router, deployed as a static export to a global CDN. Tools are implemented as small client components that lean on browser-native primitives — TextEncoder for UTF-8, SubtleCrypto for SHA family hashes, Intl for date and number formatting, and the canvas API for QR code rendering. The MD5 implementation is a hand-written port of RFC 1321 because Web Crypto does not ship MD5. Configuration data such as HTTP status codes is bundled at build time so the entire toolbox works offline once loaded.",
       "features_title": "What's inside",
       "features": [
         "JSON Formatter — format, minify, validate, and explore JSON with a tree view",
+        "Regex Tester — test regular expressions with real-time match highlighting",
         "Base64 Encode / Decode — convert text to Base64 and back, with full Unicode support",
         "URL Encoder / Decoder — encode and decode URLs and query-string parameters",
-        "Regex Tester — test regular expressions with real-time match highlighting",
-        "Timestamp Converter — convert between Unix timestamps and human-readable dates"
+        "JWT Decoder — inspect the header and payload of a JSON Web Token",
+        "Timestamp Converter — convert between Unix timestamps and human-readable dates",
+        "Color Converter — translate HEX, RGB, and HSL with a live swatch and WCAG contrast check",
+        "Number Base Converter — flip between binary, octal, decimal, and hexadecimal",
+        "Case Converter — switch text between camelCase, snake_case, kebab-case, and more",
+        "JSON ↔ YAML — convert configuration between JSON and YAML in one click",
+        "UUID Generator — produce RFC 4122 v4 UUIDs in bulk",
+        "Hash Generator — compute MD5, SHA-1, SHA-256, SHA-384, and SHA-512 of any text",
+        "QR Code Generator — turn URLs or text into a scannable QR code",
+        "Cron Expression Parser — translate a crontab line into plain English and preview next runs",
+        "HTTP Status Codes — searchable reference with the meaning of every code"
       ],
       "contact_title": "Contact",
-      "contact_body": "Suggestions, bug reports, or partnerships? Email us at contact@zhujiuyin.com."
+      "contact_body": "Suggestions, bug reports, or partnerships? Email us at contact@zhujiuyin.com. We read every message."
     }
   },
   "categories": {
     "Formatters": "Formatters",
     "Encoders / Decoders": "Encoders / Decoders",
-    "Converters": "Converters"
+    "Converters": "Converters",
+    "Generators": "Generators",
+    "Web Reference": "Web Reference"
   },
   "tool_content": {
     "use_cases_title": "Use cases",
-    "faq_title": "Frequently asked questions"
+    "faq_title": "Frequently asked questions",
+    "best_practices_title": "Best practices",
+    "code_examples_title": "Code examples",
+    "reference_title": "Reference"
   },
   "tools": {
     "json-formatter": {
@@ -152,7 +178,11 @@
       "placeholder": "Paste JSON on the left to see results",
       "editor_placeholder": "Paste JSON here or click \"Sample\"...",
       "faq_title": "What is JSON Formatter?",
-      "faq_text": "JSON (JavaScript Object Notation) is a lightweight data interchange format widely used in web APIs and configuration files. This tool helps you format, beautify, minify, and validate JSON data in your browser. Your data stays local and is never sent to any server.",
+      "faq_text": [
+        "JSON (JavaScript Object Notation) is the lingua franca of modern web APIs and configuration files. It is a strict, lightweight, language-independent format derived from JavaScript object literal syntax. A JSON document is either a value (string, number, boolean, null), an object (a list of key/value pairs wrapped in curly braces), or an array (an ordered list of values wrapped in square brackets).",
+        "This formatter parses JSON entirely in your browser using the built-in JSON engine, so the data never leaves your device. The parser is strict by design: keys and strings must use double quotes, trailing commas are forbidden, and comments are not part of the spec. The error banner reports the position of the first problem so you can locate the offending byte quickly.",
+        "Beyond pretty-printing, the tool also offers minification (useful when shipping JSON in HTML or query strings), key sorting (helpful for diff-friendly snapshots), Unicode escaping (necessary when targeting environments that strip non-ASCII bytes), and a collapsible tree view for exploring deeply nested objects without scrolling through thousands of lines."
+      ],
       "features_title": "Features",
       "features": [
         "Real-time JSON validation with error position highlighting",
@@ -164,10 +194,18 @@
         "Copy formatted or minified output with one click"
       ],
       "use_cases": [
-        "Debug API responses by pretty-printing compact JSON returned from servers.",
-        "Clean up minified JSON from browser DevTools to read it more easily.",
-        "Validate that a config file parses before committing it to a repo.",
-        "Minify JSON to reduce payload size before embedding in HTML or query strings."
+        "Debug an API response by pretty-printing the compact JSON returned by a server.",
+        "Clean up minified JSON copied from browser DevTools so you can read the structure.",
+        "Validate that a configuration file parses before committing it to a repository.",
+        "Minify JSON to reduce payload size before embedding it in HTML or query strings.",
+        "Sort keys alphabetically before checking the file into Git so future diffs only show real changes."
+      ],
+      "best_practices": [
+        "Always wrap object keys in double quotes — single quotes are not valid JSON.",
+        "Avoid trailing commas; even though many editors allow them, JSON parsers reject them.",
+        "Prefer Unix line endings (LF) when committing JSON files to source control.",
+        "Use UTF-8 without BOM; some parsers fail when a BOM is present at the start of the file.",
+        "Keep numbers within IEEE-754 double precision, or send big integers as strings to avoid silent truncation."
       ],
       "faq_list": [
         {
@@ -185,6 +223,10 @@
         {
           "q": "Can I sort object keys?",
           "a": "Yes — enable \"Sort Keys\" in the toolbar to sort keys alphabetically at every level of the tree."
+        },
+        {
+          "q": "Is JSON the same as JavaScript?",
+          "a": "No. JSON is a strict subset of JavaScript object literal syntax. Valid JavaScript is not always valid JSON — for example JavaScript allows unquoted keys, single-quoted strings, comments, and trailing commas, none of which are legal in JSON."
         }
       ]
     },
@@ -204,12 +246,37 @@
       "encode_error": "Failed to encode — input may contain unsupported characters.",
       "decode_error": "Failed to decode — input is not valid Base64.",
       "faq_title": "What is Base64?",
-      "faq_text": "Base64 is a binary-to-text encoding scheme that represents binary data as an ASCII string. It is commonly used to embed binary data in JSON, HTML, emails, and URLs. This tool supports full Unicode text including CJK characters.",
+      "faq_text": [
+        "Base64 is a binary-to-text encoding scheme that represents arbitrary binary data as an ASCII string using 64 printable characters: A–Z, a–z, 0–9, and the symbols + and /. The padding character = is appended so the encoded output length is always a multiple of four. Base64 was originally designed for safely embedding binary data in 7-bit channels such as email (MIME), where high-byte values would otherwise be corrupted by transport servers.",
+        "Modern uses of Base64 include data URIs in CSS and HTML, Basic Authentication tokens in HTTP headers, the payload section of JSON Web Tokens, and binary attachments in JSON or XML where a plain string is required. A URL-safe variant exists that replaces + with - and / with _ so the encoded string can travel inside a URL without further escaping.",
+        "This tool encodes and decodes Base64 entirely in your browser. Input is first converted to UTF-8 bytes via the standard TextEncoder, ensuring that Chinese, Japanese, Korean, emoji, and other multi-byte characters round-trip correctly. Whitespace inside Base64 input is tolerated during decoding."
+      ],
       "use_cases": [
         "Embed small images or fonts inline in CSS or HTML using data URIs.",
         "Encode binary payloads so they can travel safely inside JSON or XML.",
         "Decode Basic Auth tokens (the value after \"Basic \" in the Authorization header).",
-        "Inspect the payload section of a JWT (the middle segment between the dots)."
+        "Inspect the payload section of a JWT (the middle segment between the dots).",
+        "Encode credentials or short messages that need to survive a 7-bit text channel."
+      ],
+      "best_practices": [
+        "Never treat Base64 as encryption — it is reversible by anyone with a few lines of code.",
+        "Use the URL-safe variant (\"-\" and \"_\") when the encoded string is placed inside a URL.",
+        "Strip whitespace before decoding if the source pasted in line breaks.",
+        "Be aware that Base64 grows the payload by roughly 33%, plus the overhead of MIME line wrapping."
+      ],
+      "code_examples": [
+        {
+          "lang": "JavaScript",
+          "code": "const encoded = btoa(unescape(encodeURIComponent(\"héllo\")));\n// 'aMOpbGxv'\nconst decoded = decodeURIComponent(escape(atob(encoded)));"
+        },
+        {
+          "lang": "Python",
+          "code": "import base64\nencoded = base64.b64encode(\"héllo\".encode(\"utf-8\")).decode(\"ascii\")\ndecoded = base64.b64decode(encoded).decode(\"utf-8\")"
+        },
+        {
+          "lang": "Bash",
+          "code": "echo -n 'héllo' | base64        # encode\necho 'aMOpbGxv' | base64 -d    # decode"
+        }
       ],
       "faq_list": [
         {
@@ -227,6 +294,10 @@
         {
           "q": "Why does my decoded result look garbled?",
           "a": "The input may be URL-safe Base64 (using - and _ instead of + and /) or may contain stray whitespace. Clean the string and try again."
+        },
+        {
+          "q": "What is the = sign at the end?",
+          "a": "It is padding. Base64 output length is always a multiple of four; if the source bytes do not divide evenly the encoder appends one or two = characters."
         }
       ]
     },
@@ -245,12 +316,23 @@
       "input_placeholder": "https://example.com/search?q=hello world&lang=en",
       "decode_error": "Error: malformed URI sequence",
       "faq_title": "URL Encoding Explained",
-      "faq_text": "URL encoding (percent-encoding) replaces unsafe characters with a % followed by two hex digits. encodeURIComponent encodes everything except A-Z a-z 0-9 - _ . ! ~ * ' ( ), making it ideal for query parameters. encodeURI preserves URI structure characters like : / ? # &.",
+      "faq_text": [
+        "URL encoding (also called percent-encoding) replaces unsafe characters with a percent sign followed by two hexadecimal digits that represent the character's UTF-8 byte. Reserved characters that have a special meaning in URLs — such as / ? # & = + space — must be percent-encoded when they appear inside a path segment or a parameter value rather than as a delimiter.",
+        "JavaScript exposes two built-in helpers. encodeURIComponent encodes everything except A–Z, a–z, 0–9, and the unreserved characters - _ . ! ~ * ' ( ). It is the right choice for a single query parameter value because it preserves no URL structure. encodeURI is more permissive: it leaves URI-structural characters such as : / ? # & untouched, so it is appropriate for whole URLs that already contain valid structure.",
+        "This tool wraps both functions and handles failure gracefully. If you paste a malformed percent sequence (for example a stray %Z), the decoder returns an explanatory error rather than throwing. Non-ASCII characters such as Chinese, Japanese, or emoji are first converted to UTF-8 bytes before encoding, which is the modern standard adopted by every major browser."
+      ],
       "use_cases": [
         "Build query strings that include spaces, symbols, or non-ASCII characters.",
         "Decode a logged URL to see what a user actually submitted.",
         "Safely pass a redirect target as a query parameter.",
-        "Debug issues where servers receive unexpected characters."
+        "Debug issues where servers receive unexpected characters.",
+        "Generate clean OAuth callback URLs that include a state parameter."
+      ],
+      "best_practices": [
+        "Use encodeURIComponent for individual parameter values, not for entire URLs.",
+        "Encode space as %20 in URL paths; only application/x-www-form-urlencoded bodies use + for space.",
+        "Encode user-controlled values before concatenating them into a URL to prevent injection.",
+        "Remember that the # fragment is never sent to the server, so credentials should not live there even encoded."
       ],
       "faq_list": [
         {
@@ -264,6 +346,10 @@
         {
           "q": "Do I need to encode Chinese characters?",
           "a": "Yes. Non-ASCII characters must be UTF-8 encoded and then percent-encoded to travel through URLs reliably. This tool handles that automatically."
+        },
+        {
+          "q": "Why does decoding fail with \"malformed URI sequence\"?",
+          "a": "The input contains a percent sign that is not followed by two valid hex digits. Either escape the literal % as %25 or fix the surrounding bytes."
         }
       ]
     },
@@ -283,13 +369,44 @@
       "index": "Index",
       "groups": "Groups",
       "faq_title": "About Regex Tester",
-      "faq_text": "This tool lets you test JavaScript-compatible regular expressions in real time. Matches are highlighted in the test string, and capture groups are shown in the results table. Supports global (g), case-insensitive (i), multiline (m), dotAll (s), and unicode (u) flags.",
+      "faq_text": [
+        "A regular expression — regex for short — is a compact pattern language for matching, extracting, and replacing text. Originally formalised in the 1950s by mathematician Stephen Kleene, regex is now built into virtually every programming language and editor. This tester runs your pattern against the JavaScript RegExp engine, the same engine used by Node.js, browsers, and the Bun runtime.",
+        "The tool re-evaluates the pattern on every keystroke, highlighting matches in the test string and listing every match with its index and capture groups in a table. Common flags are toggleable: g (global) returns all matches, i (case-insensitive) ignores letter case, m (multiline) makes ^ and $ match line boundaries, s (dotAll) makes . match newlines, and u (unicode) enables full Unicode property support."
+      ],
       "use_cases": [
         "Validate email, phone, or ID formats before shipping a form validator.",
         "Extract URLs, dates, or numbers from a block of log text.",
         "Debug a pattern that is not matching as you expect by seeing matches highlighted live.",
-        "Prototype a replacement rule before dropping it into your code editor."
+        "Prototype a replacement rule before dropping it into your code editor.",
+        "Test backreferences, lookaheads, and named capture groups before committing them."
       ],
+      "best_practices": [
+        "Anchor patterns with ^ and $ when validating an entire string to avoid partial matches.",
+        "Prefer non-greedy quantifiers (.*?) when matching content between delimiters.",
+        "Use named capture groups (?<name>...) for readable code and self-documenting patterns.",
+        "Escape literal special characters: . * + ? ^ $ { } ( ) | [ ] \\ all need a backslash."
+      ],
+      "reference_table": {
+        "key_label": "Token",
+        "value_label": "Meaning",
+        "rows": [
+          { "key": ".", "value": "Any single character (except newline unless s flag)" },
+          { "key": "\\d / \\D", "value": "Digit / non-digit" },
+          { "key": "\\w / \\W", "value": "Word character (letter, digit, underscore) / non-word" },
+          { "key": "\\s / \\S", "value": "Whitespace / non-whitespace" },
+          { "key": "^ / $", "value": "Start / end of string (or line with m flag)" },
+          { "key": "\\b / \\B", "value": "Word boundary / non-boundary" },
+          { "key": "*", "value": "Zero or more (greedy)" },
+          { "key": "+", "value": "One or more (greedy)" },
+          { "key": "?", "value": "Zero or one, or non-greedy modifier when after a quantifier" },
+          { "key": "{n,m}", "value": "Between n and m repetitions" },
+          { "key": "(...)", "value": "Capture group" },
+          { "key": "(?:...)", "value": "Non-capturing group" },
+          { "key": "(?<name>...)", "value": "Named capture group" },
+          { "key": "(?=...) / (?!...)", "value": "Positive / negative lookahead" },
+          { "key": "(?<=...) / (?<!...)", "value": "Positive / negative lookbehind" }
+        ]
+      },
       "faq_list": [
         {
           "q": "Which regex dialect does this tool use?",
@@ -302,6 +419,10 @@
         {
           "q": "How do I match across newlines?",
           "a": "Use the s flag (dotAll) to make . match newline characters, or use \\s explicitly."
+        },
+        {
+          "q": "Can I use lookbehind here?",
+          "a": "Yes, lookbehind has been supported in V8 (Chrome, Node.js) since 2018 and is widely available in modern browsers."
         }
       ]
     },
@@ -326,12 +447,22 @@
       "empty_error": "Please enter a timestamp or date string.",
       "parse_error": "Unable to parse input. Try a Unix timestamp or ISO 8601 date.",
       "faq_title": "About Unix Timestamps",
-      "faq_text": "A Unix timestamp is the number of seconds since January 1, 1970 00:00:00 UTC (the Unix Epoch). This tool converts between Unix timestamps (seconds or milliseconds) and human-readable date formats including ISO 8601, UTC, and your local timezone.",
+      "faq_text": [
+        "A Unix timestamp is the number of seconds that have elapsed since the Unix Epoch — January 1, 1970 00:00:00 UTC. It is the canonical representation of a single moment in time used by almost every database, programming language, and network protocol because it is timezone-agnostic, monotonic, and trivially sortable. JavaScript and many high-resolution APIs use the millisecond variant, which is the same value multiplied by 1000.",
+        "This tool accepts either a Unix timestamp (10 digits for seconds, 13 digits for milliseconds) or any string the JavaScript Date constructor understands — ISO 8601 dates, RFC 2822 strings, and a handful of regional formats. It then renders the moment in five forms simultaneously so you can copy whichever your downstream system expects."
+      ],
       "use_cases": [
         "Translate a timestamp from logs or a database into a readable date in your timezone.",
         "Check whether a timestamp is stored in seconds or milliseconds.",
         "Generate a timestamp for an API request that requires epoch time.",
-        "Compare two events by seeing their ISO 8601 UTC values side by side."
+        "Compare two events by seeing their ISO 8601 UTC values side by side.",
+        "Convert an ISO 8601 timestamp to its Unix equivalent before storing it in a numeric column."
+      ],
+      "best_practices": [
+        "Store timestamps in UTC at the database layer; convert to the user's timezone only at the presentation layer.",
+        "Prefer ISO 8601 strings in JSON APIs — they are unambiguous and human-readable.",
+        "Use 64-bit integers for timestamps to avoid the Year 2038 overflow that affects 32-bit signed values.",
+        "Be explicit about the unit (seconds vs milliseconds) in every API contract."
       ],
       "faq_list": [
         {
@@ -345,6 +476,577 @@
         {
           "q": "What is the Year 2038 problem?",
           "a": "Signed 32-bit timestamps overflow in January 2038. Use 64-bit integers (or a language runtime that does) to stay safe."
+        },
+        {
+          "q": "Why does ISO 8601 end with a Z?",
+          "a": "Z stands for \"Zulu time\" — military shorthand for UTC. It is equivalent to the offset +00:00."
+        }
+      ]
+    },
+    "jwt-decoder": {
+      "name": "JWT Decoder",
+      "description": "Decode JSON Web Tokens — view header, payload, and claims.",
+      "page_title": "JWT Decoder",
+      "page_desc": "Paste a JSON Web Token to decode its header and payload. Decoding only — signature verification is not performed.",
+      "seo_desc": "Decode JWT (JSON Web Token) online. Inspect header, payload, claims, and standard fields like exp, iat, sub. No verification — runs in your browser.",
+      "input_label": "JWT",
+      "input_placeholder": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+      "header": "Header",
+      "payload": "Payload",
+      "signature": "Signature",
+      "decode": "Decode",
+      "clear": "Clear",
+      "decode_error": "Failed to decode — input is not a valid JWT (expected three Base64URL parts separated by dots).",
+      "expires_at": "Expires at",
+      "issued_at": "Issued at",
+      "not_before": "Not before",
+      "expired_warning": "This token has expired.",
+      "valid_until": "Valid until",
+      "faq_title": "What is a JSON Web Token?",
+      "faq_text": [
+        "A JSON Web Token (JWT, pronounced \"jot\") is a compact, URL-safe means of representing claims between two parties, defined by RFC 7519. A JWT consists of three Base64URL-encoded segments separated by dots: a header that declares the signing algorithm, a payload that carries the claims, and a signature that protects integrity. The whole token is short enough to live inside a cookie, an Authorization header, or a query string.",
+        "JWT decoding is a purely client-side operation: split the string on dots, Base64URL-decode the first two segments, and parse them as JSON. This tool does exactly that — it never contacts a server and never performs signature verification, because verification requires the issuer's secret or public key, which lives only on the server. Treat the decoder as a debugging aid, not as an authentication check.",
+        "Standard claims defined by RFC 7519 include iss (issuer), sub (subject), aud (audience), exp (expiration time as a Unix timestamp), nbf (not before), iat (issued at), and jti (token ID). Custom claims may be added by application authors; tokens issued by Auth0, AWS Cognito, Firebase, Supabase, and Keycloak follow this pattern with provider-specific extensions."
+      ],
+      "use_cases": [
+        "Inspect what an authentication provider is sending in the Authorization header.",
+        "Verify that the exp (expiration) claim has not passed when a request is being rejected as unauthorized.",
+        "Read the sub or email claim to confirm which user a token belongs to.",
+        "Compare two tokens to see why one is being rejected by the API gateway.",
+        "Confirm the algorithm (alg in the header) before configuring a verifier on the server side."
+      ],
+      "best_practices": [
+        "Never trust a JWT until the signature has been verified server-side with the issuer's public key.",
+        "Keep tokens short-lived (minutes, not weeks) and refresh them with a separate refresh token.",
+        "Do not store sensitive data in the payload — JWT is signed but not encrypted by default.",
+        "Reject tokens with alg = none on the server; accept only the algorithm you expect.",
+        "Store JWTs in HttpOnly cookies when possible to mitigate XSS, not in localStorage."
+      ],
+      "faq_list": [
+        {
+          "q": "Is the token verified by this tool?",
+          "a": "No. Verification requires the issuer's secret or public key, which only the server has. This tool only decodes; do not rely on it for security decisions."
+        },
+        {
+          "q": "Is the payload encrypted?",
+          "a": "No, JWTs are signed (JWS) by default, not encrypted. Anyone holding the token can read the payload. Use JWE if confidentiality is required."
+        },
+        {
+          "q": "What does the alg field mean?",
+          "a": "It declares the signing algorithm — for example HS256 (HMAC-SHA256), RS256 (RSA-SHA256), or ES256 (ECDSA P-256)."
+        },
+        {
+          "q": "Why is the third segment empty for some tokens?",
+          "a": "An empty signature indicates an unsigned token (alg = none). This is dangerous and should never be accepted by a production verifier."
+        },
+        {
+          "q": "How do I know if a token is expired?",
+          "a": "Check the exp claim — it is a Unix timestamp in seconds. The decoder shows the parsed expiration date and warns when it is in the past."
+        }
+      ]
+    },
+    "uuid-generator": {
+      "name": "UUID Generator",
+      "description": "Generate random RFC 4122 v4 UUIDs in bulk.",
+      "page_title": "UUID Generator",
+      "page_desc": "Generate one or many RFC 4122 version 4 UUIDs using the browser's cryptographic random source.",
+      "seo_desc": "Generate RFC 4122 v4 UUIDs (GUIDs) online. Bulk generation, hyphen toggle, uppercase toggle, copy with one click. Cryptographically random in your browser.",
+      "count_label": "How many?",
+      "generate": "Generate",
+      "uppercase": "Uppercase",
+      "no_hyphens": "Without hyphens",
+      "copy_all": "Copy all",
+      "regenerate": "Regenerate",
+      "faq_title": "About UUID v4",
+      "faq_text": [
+        "A UUID — Universally Unique Identifier, also called GUID on Microsoft platforms — is a 128-bit value used as an identifier in distributed systems where coordination would be too expensive. The format is standardised by RFC 4122 and renders as 32 hexadecimal digits in the canonical form 8-4-4-4-12 separated by hyphens, for example 550e8400-e29b-41d4-a716-446655440000.",
+        "Version 4 UUIDs are generated almost entirely from random bytes. Six bits are reserved to declare the version (4) and the variant (RFC 4122), leaving 122 bits of randomness — enough that the probability of collision is negligible until you have generated about 2.71 quintillion of them. This generator uses crypto.randomUUID(), which delegates to the operating system's CSPRNG, so the values are suitable for security-sensitive use cases such as session tokens or one-time links."
+      ],
+      "use_cases": [
+        "Create primary keys for database rows when you need to generate the ID before inserting.",
+        "Tag log lines or trace spans so you can correlate events across services.",
+        "Generate idempotency keys for non-idempotent HTTP requests.",
+        "Build invitation links or reset tokens that should be unguessable.",
+        "Assign stable IDs to React list items that have no natural primary key."
+      ],
+      "best_practices": [
+        "Store UUIDs as 16-byte BINARY in MySQL or as the native UUID type in PostgreSQL — not as 36-character VARCHAR — to save space.",
+        "Use UUIDv7 (time-ordered) when you need both uniqueness and good database index locality.",
+        "Avoid embedding sensitive information in a UUID; treat it as opaque.",
+        "Do not use UUIDs as a substitute for proper authorisation — knowing an ID is not the same as being allowed to access the resource."
+      ],
+      "faq_list": [
+        {
+          "q": "Are these UUIDs safe to use as security tokens?",
+          "a": "Yes for moderate-security purposes. crypto.randomUUID() uses the operating system's cryptographically secure random source. For very long-lived secrets prefer a longer random string."
+        },
+        {
+          "q": "What is the chance of a collision?",
+          "a": "Negligible. With 122 random bits you would need to generate roughly 2.71 quintillion UUIDs to have a 50% chance of any collision."
+        },
+        {
+          "q": "Why version 4 specifically?",
+          "a": "Version 4 is fully random and requires no coordination, MAC address, or clock state. It is the default choice in most modern libraries."
+        },
+        {
+          "q": "How is UUIDv4 different from UUIDv7?",
+          "a": "UUIDv7 embeds a millisecond timestamp in the high bits, giving lexicographic ordering and friendlier database index behaviour. UUIDv4 is fully random with no temporal information."
+        }
+      ]
+    },
+    "hash-generator": {
+      "name": "Hash Generator",
+      "description": "Compute MD5, SHA-1, SHA-256, SHA-384, and SHA-512 hashes.",
+      "page_title": "Hash Generator (MD5 / SHA family)",
+      "page_desc": "Hash any text with MD5, SHA-1, SHA-256, SHA-384, and SHA-512 in one go. All hashing happens in your browser.",
+      "seo_desc": "Online MD5, SHA-1, SHA-256, SHA-384, and SHA-512 hash generator. Computes all hashes locally in the browser using the Web Crypto API. Free, no sign-up.",
+      "input_label": "Text to hash",
+      "input_placeholder": "Enter text to hash...",
+      "uppercase": "Uppercase",
+      "clear": "Clear",
+      "faq_title": "What is a cryptographic hash?",
+      "faq_text": [
+        "A cryptographic hash function takes an arbitrary input and produces a fixed-length output called a digest. The function is deterministic (same input always produces the same digest), efficient to compute, and infeasible to invert — given a digest you cannot practically reconstruct the input. Two inputs producing the same digest is called a collision; a good hash function makes collisions essentially impossible to find.",
+        "This tool computes five standard digests at once. SHA-1, SHA-256, SHA-384, and SHA-512 are computed using the browser's Web Crypto API, which delegates to the same vetted implementations the rest of the platform uses. MD5 is computed by a hand-written port of RFC 1321 because Web Crypto deliberately omits MD5 — it is considered cryptographically broken and is offered here only for compatibility with legacy systems such as Apache htpasswd files or old API checksums."
+      ],
+      "use_cases": [
+        "Generate file or content checksums for cache busting and integrity checks.",
+        "Compute the SHA-256 of an email address before sending it to an analytics endpoint that expects hashed PII.",
+        "Verify that a message you received matches the digest published by the sender.",
+        "Produce content-addressed identifiers for documents stored in S3 or IPFS.",
+        "Generate stable cache keys for memoised API responses."
+      ],
+      "best_practices": [
+        "Do not use MD5 or SHA-1 for any security-sensitive purpose — both are broken against collision attacks.",
+        "For password storage use a slow KDF such as bcrypt, scrypt, or Argon2 instead of a raw hash.",
+        "When hashing user input always normalise (trim, lowercase) consistently on both sides.",
+        "Choose SHA-256 as the default for new applications; step up to SHA-512 only if you are constrained by an external spec."
+      ],
+      "reference_table": {
+        "key_label": "Algorithm",
+        "value_label": "Output length / status",
+        "rows": [
+          { "key": "MD5", "value": "128 bits (32 hex). Broken — do not use for security." },
+          { "key": "SHA-1", "value": "160 bits (40 hex). Broken — do not use for security." },
+          { "key": "SHA-256", "value": "256 bits (64 hex). Recommended general-purpose hash." },
+          { "key": "SHA-384", "value": "384 bits (96 hex). Common in TLS suites." },
+          { "key": "SHA-512", "value": "512 bits (128 hex). Marginally stronger, larger output." }
+        ]
+      },
+      "faq_list": [
+        {
+          "q": "Why is MD5 still here if it is broken?",
+          "a": "MD5 is broken for collision resistance and must not be used for security, but legacy systems still rely on it for non-security checksums. We include it for compatibility with those systems."
+        },
+        {
+          "q": "Is the input sent anywhere?",
+          "a": "No. SHA hashes are computed by your browser's Web Crypto API; MD5 by JavaScript bundled into the page. Nothing leaves your device."
+        },
+        {
+          "q": "Can I hash a file?",
+          "a": "This tool hashes text. To hash a file you would need a file picker; in the meantime, drag the file contents into a terminal and pipe through shasum -a 256."
+        },
+        {
+          "q": "Why are the digests shown in lowercase hex?",
+          "a": "Lowercase hex is the conventional representation in Unix and modern crypto libraries. Toggle uppercase if you need parity with PowerShell or .NET output."
+        },
+        {
+          "q": "What hash should I use for passwords?",
+          "a": "None of these. Use a memory-hard, deliberately slow KDF such as Argon2, bcrypt, or scrypt. A fast hash makes brute-forcing passwords cheap."
+        }
+      ]
+    },
+    "color-converter": {
+      "name": "Color Converter",
+      "description": "Convert between HEX, RGB, and HSL with WCAG contrast check.",
+      "page_title": "Color Converter & Contrast Checker",
+      "page_desc": "Convert any colour between HEX, RGB, and HSL. Preview the swatch and check WCAG contrast against black and white.",
+      "seo_desc": "Online color converter — translate HEX, RGB, and HSL with a live swatch and WCAG contrast ratio. Helpful for designers and frontend developers.",
+      "input_label": "Color",
+      "input_placeholder": "#3b82f6 or rgb(59,130,246) or hsl(217,91%,60%)",
+      "hex": "HEX",
+      "rgb": "RGB",
+      "hsl": "HSL",
+      "preview": "Preview",
+      "contrast_title": "WCAG Contrast",
+      "vs_white": "vs white",
+      "vs_black": "vs black",
+      "aa_normal": "AA Normal",
+      "aaa_normal": "AAA Normal",
+      "fail": "Fail",
+      "pass": "Pass",
+      "parse_error": "Could not parse color. Try HEX (#3b82f6), RGB, or HSL.",
+      "faq_title": "Color models in the browser",
+      "faq_text": [
+        "CSS lets you express the same colour in many different forms. HEX (#3b82f6) is the shortest and most widely understood — three or six hexadecimal digits map directly to the red, green, and blue channels of the sRGB color space. RGB notation (rgb(59 130 246)) is functionally identical but easier to manipulate programmatically. HSL (hsl(217 91% 60%)) is a cylindrical reparameterisation that splits a colour into hue, saturation, and lightness — much more intuitive when you want to lighten or shift a colour.",
+        "This tool parses any of those notations, normalises them to RGB, and then renders all three forms simultaneously. It also computes the WCAG 2.1 contrast ratio of the chosen colour against pure white and pure black backgrounds, indicating whether the combination meets AA (4.5:1) or AAA (7:1) standards for normal-sized body text. Use the swatch as a quick visual sanity check before pasting the value into your stylesheet."
+      ],
+      "use_cases": [
+        "Pick a brand colour and instantly check whether it has enough contrast for body text.",
+        "Translate a HEX value from a designer's mockup into the HSL form you prefer to manipulate.",
+        "Verify accessibility compliance before shipping a new component.",
+        "Sample a colour from a screenshot and convert it for use in CSS variables.",
+        "Produce a slightly lighter or darker variant by tweaking the lightness channel."
+      ],
+      "best_practices": [
+        "Aim for at least 4.5:1 contrast for body text and 3:1 for large text per WCAG 2.1 AA.",
+        "Prefer HSL when you need to programmatically darken or lighten a colour — adjust the L channel only.",
+        "Keep the same hue family across UI states (hover, active, disabled) by varying lightness.",
+        "Avoid pure black (#000) on pure white — slightly off-white surfaces are easier on the eyes."
+      ],
+      "faq_list": [
+        {
+          "q": "Which RGB color space is used?",
+          "a": "Standard sRGB, the same space CSS color values target by default. Wide-gamut spaces such as P3 are not yet handled by this tool."
+        },
+        {
+          "q": "How is the contrast ratio computed?",
+          "a": "WCAG 2.1 relative luminance. We compute the linearised RGB luminance of each colour and apply the (L1 + 0.05) / (L2 + 0.05) ratio."
+        },
+        {
+          "q": "Why is my HSL colour slightly off after a HEX round trip?",
+          "a": "HEX has eight bits per channel; HSL conversion involves floating-point arithmetic and rounding back to 8-bit RGB can shift the hue by a fraction of a degree."
+        },
+        {
+          "q": "What input formats are accepted?",
+          "a": "Three- and six-digit HEX (#3bf, #3b82f6), rgb()/rgba() with comma or space syntax, and hsl()/hsla() in degrees and percentages."
+        }
+      ]
+    },
+    "number-base": {
+      "name": "Number Base Converter",
+      "description": "Convert between binary, octal, decimal, and hexadecimal numbers.",
+      "page_title": "Number Base Converter",
+      "page_desc": "Type a value in any base — binary, octal, decimal, or hex — and see it instantly in the other three.",
+      "seo_desc": "Online number base converter — translate between binary, octal, decimal, and hexadecimal. Supports negative integers up to JavaScript's safe range.",
+      "input_label": "Value",
+      "input_placeholder": "Type a number in any base...",
+      "binary": "Binary (base 2)",
+      "octal": "Octal (base 8)",
+      "decimal": "Decimal (base 10)",
+      "hex": "Hexadecimal (base 16)",
+      "auto_detect": "Auto-detect",
+      "force_base": "Force base",
+      "parse_error": "Could not parse value as a number in the selected base.",
+      "out_of_range": "Number is outside JavaScript's safe integer range.",
+      "faq_title": "Why number bases matter",
+      "faq_text": [
+        "Computers store numbers as bits, but humans rarely read bits directly. Hexadecimal compresses four bits into a single character, making memory dumps, MAC addresses, color values, and file headers much easier to skim. Octal encodes three bits per character and survives in Unix file permissions. Binary is the canonical machine representation and shows up whenever bit manipulation matters.",
+        "This converter lets you type a number in any base and see it instantly in all four common bases. The classic JavaScript prefixes are recognised: 0b for binary, 0o for octal, 0x for hex, and a bare decimal otherwise. You can also force a base using the dropdown — useful when an ambiguous input such as 100 could be interpreted as 4 (binary), 64 (octal), 100 (decimal), or 256 (hex)."
+      ],
+      "use_cases": [
+        "Inspect a colour HEX value as RGB component bits.",
+        "Translate Unix file permissions between octal (0755) and the binary rwxrwxrwx layout.",
+        "Read a memory address copied from a debugger and convert it to decimal.",
+        "Encode a port number or magic constant as hex for a binary file format.",
+        "Convert a Base64 alphabet index back to a 6-bit binary chunk."
+      ],
+      "best_practices": [
+        "Use the 0x prefix for hex literals in code so a reader is never in doubt about the base.",
+        "Group long binary numbers in nibbles (4 bits) to make them easier to read.",
+        "Be aware that JavaScript bitwise operators coerce to 32-bit signed integers — large hex values may surprise you.",
+        "When converting negative numbers across bases, decide up front whether you want sign-magnitude or two's complement."
+      ],
+      "faq_list": [
+        {
+          "q": "What is the largest number this tool supports?",
+          "a": "JavaScript's safe integer range, 2^53 - 1. Numbers outside this range may lose precision."
+        },
+        {
+          "q": "How does it handle negative numbers?",
+          "a": "Decimal accepts a leading minus sign. Other bases display the absolute value with a minus sign rather than the two's-complement representation, which depends on bit width."
+        },
+        {
+          "q": "Are leading zeros preserved?",
+          "a": "We strip leading zeros except when needed to indicate the base prefix or to align nibbles in binary output."
+        },
+        {
+          "q": "Is hex case-sensitive?",
+          "a": "Input accepts both 0xFF and 0xff. Output is lowercase by default to match modern conventions."
+        }
+      ]
+    },
+    "case-converter": {
+      "name": "Case Converter",
+      "description": "Convert text between camelCase, snake_case, kebab-case, and more.",
+      "page_title": "Case Converter",
+      "page_desc": "Convert text between camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE, Title Case, and Sentence case.",
+      "seo_desc": "Online text case converter for developers. Switch between camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE, Title Case, and lower/UPPER.",
+      "input_label": "Input",
+      "input_placeholder": "Type or paste text — words can be separated by spaces, hyphens, underscores, or capitals.",
+      "copy": "Copy",
+      "camel": "camelCase",
+      "pascal": "PascalCase",
+      "snake": "snake_case",
+      "kebab": "kebab-case",
+      "constant": "CONSTANT_CASE",
+      "title": "Title Case",
+      "sentence": "Sentence case",
+      "lower": "lowercase",
+      "upper": "UPPERCASE",
+      "faq_title": "Case conventions in code",
+      "faq_text": [
+        "Naming conventions vary across languages and ecosystems. JavaScript and Java use camelCase for variables and functions, PascalCase for classes and React components. Python and Rust prefer snake_case for variables and functions and PascalCase for types. Cascading style sheets, HTML attributes, and URL slugs use kebab-case. Environment variables and constants are conventionally CONSTANT_CASE in nearly every ecosystem.",
+        "Switching between conventions by hand is error-prone — especially when the source has acronyms or numbers. This tool tokenises your input into individual words by detecting word boundaries (whitespace, separators, and capital-letter transitions) and then reassembles the words in the target style. Acronyms are preserved in PascalCase output and lowercased in camelCase output, matching the behaviour of popular libraries such as lodash and change-case."
+      ],
+      "use_cases": [
+        "Rename a TypeScript identifier from snake_case (returned by a Python API) to camelCase before assignment.",
+        "Generate a kebab-case URL slug from a human-readable title.",
+        "Convert a column list from a SQL CREATE TABLE statement into TypeScript interface keys.",
+        "Translate a CONSTANT_CASE feature flag name into a sentence-cased label.",
+        "Bulk rename test fixtures so they conform to your project's style."
+      ],
+      "best_practices": [
+        "Pick a convention per layer (database, API, UI) and stick to it; convert at the boundary.",
+        "Keep acronyms uppercase in PascalCase (e.g. JSONParser) only if the surrounding code does so consistently.",
+        "Avoid mixing styles in a single file — readers infer meaning from convention.",
+        "When generating slugs, also strip diacritics and limit length to 60 characters for SEO friendliness."
+      ],
+      "faq_list": [
+        {
+          "q": "How are word boundaries detected?",
+          "a": "By splitting on whitespace, hyphens, underscores, dots, and the transition between a lowercase letter and an uppercase letter."
+        },
+        {
+          "q": "What happens to acronyms?",
+          "a": "Acronym handling depends on the target style. PascalCase preserves them; camelCase lowercases the first acronym only when it appears at the start of the identifier."
+        },
+        {
+          "q": "Are numbers treated as their own word?",
+          "a": "Numbers stay attached to the preceding word. Customise the separator if your style guide requires otherwise."
+        },
+        {
+          "q": "Does it support non-ASCII letters?",
+          "a": "Yes — Unicode letters are recognised, but case mapping for some scripts (Turkish dotted/dotless I) may differ from the default JavaScript locale."
+        }
+      ]
+    },
+    "json-yaml": {
+      "name": "JSON ↔ YAML",
+      "description": "Convert JSON to YAML and YAML to JSON with one click.",
+      "page_title": "JSON ↔ YAML Converter",
+      "page_desc": "Convert configuration between JSON and YAML, instantly and offline. Preserves anchors, references, and unicode characters.",
+      "seo_desc": "Online JSON to YAML and YAML to JSON converter. Validate, pretty-print, and translate config files in your browser.",
+      "input_label": "Source",
+      "output_label": "Output",
+      "to_yaml": "JSON → YAML",
+      "to_json": "YAML → JSON",
+      "swap": "Swap",
+      "clear": "Clear",
+      "indent": "Indent",
+      "json_error": "JSON parse error",
+      "yaml_error": "YAML parse error",
+      "input_placeholder_json": "Paste JSON here...",
+      "input_placeholder_yaml": "Paste YAML here...",
+      "faq_title": "JSON, YAML, and when to use which",
+      "faq_text": [
+        "JSON and YAML solve overlapping problems — both describe structured data — but they have different cultural homes. JSON dominates wire formats and APIs because it is unambiguous, fast to parse, and supported by every language standard library. YAML dominates configuration files (Kubernetes manifests, CI pipelines, Ansible playbooks) because it is more compact, supports comments, and reads more like prose.",
+        "Every JSON document is a valid YAML document — YAML is a strict superset. Converting from JSON to YAML almost always produces a usable result. Converting from YAML to JSON occasionally loses information: comments are dropped, tags are normalised, and node-anchor references are flattened. This tool uses js-yaml, the most widely deployed YAML 1.2 parser for JavaScript, and runs entirely inside your browser tab."
+      ],
+      "use_cases": [
+        "Translate a Kubernetes ConfigMap from YAML to JSON to feed it through jq.",
+        "Convert a JSON OpenAPI spec to YAML for human-friendly review.",
+        "Quickly reformat a CI pipeline definition copied from someone else's repository.",
+        "Validate that a YAML file parses without ambiguity before committing.",
+        "Convert a JSON snippet to YAML when writing GitHub Actions or Helm values."
+      ],
+      "best_practices": [
+        "Avoid YAML's optional flow style for human-edited configs — block style scales better.",
+        "Always quote strings that look like numbers, booleans, or dates (YAML's \"Norway problem\").",
+        "Pick a single indentation level (two spaces is conventional) and enforce it via a linter.",
+        "When precision matters, prefer JSON — YAML 1.1 historically interpreted on/off/yes/no as booleans."
+      ],
+      "faq_list": [
+        {
+          "q": "Are comments preserved when going from YAML to JSON?",
+          "a": "No. JSON has no comment syntax, so YAML comments are discarded during conversion."
+        },
+        {
+          "q": "What YAML version is supported?",
+          "a": "YAML 1.2 via js-yaml. The notorious YAML 1.1 boolean coercions (yes/no/on/off) are not applied."
+        },
+        {
+          "q": "Does the tool handle multi-document YAML files?",
+          "a": "It parses the first document. Multi-document streams (separated by ---) require an explicit toggle which is on the roadmap."
+        },
+        {
+          "q": "Why does my number get quoted in YAML output?",
+          "a": "If the value would be parsed back as a different type (for example a string that looks like a number), js-yaml quotes it to preserve round-trip equality."
+        }
+      ]
+    },
+    "cron-parser": {
+      "name": "Cron Expression Parser",
+      "description": "Explain a cron expression in plain English and preview next runs.",
+      "page_title": "Cron Expression Parser",
+      "page_desc": "Paste a five-field cron expression and read it in plain English, with a preview of the next five runs.",
+      "seo_desc": "Online cron parser — translate a crontab line into plain English, validate the syntax, and preview the next five runs.",
+      "input_label": "Cron expression",
+      "input_placeholder": "*/15 * * * *",
+      "explain": "Explain",
+      "next_runs": "Next runs",
+      "fields_title": "Fields",
+      "minute": "Minute",
+      "hour": "Hour",
+      "day_of_month": "Day of month",
+      "month": "Month",
+      "day_of_week": "Day of week",
+      "parse_error": "Invalid cron expression — expected five space-separated fields.",
+      "faq_title": "Reading cron",
+      "faq_text": [
+        "A cron expression is a five-field schedule that tells a Unix scheduler when to run a job. The fields are minute, hour, day-of-month, month, and day-of-week, separated by spaces. Each field accepts a single value, a comma-separated list, a range (1-5), a step (*/15), or the wildcard *. The classic Vixie cron used on most Linux systems supports this exact syntax; many newer schedulers (systemd timers, GitHub Actions, Kubernetes CronJobs) speak the same dialect.",
+        "This parser breaks the expression into its five fields, validates each value, and translates the whole thing into plain English. It also previews the next five run times relative to your local clock so you can sanity-check that, for example, a build labelled \"every 15 minutes\" really fires four times an hour. The parser does not include the optional seconds field used by Quartz; expressions with six fields will be rejected."
+      ],
+      "use_cases": [
+        "Sanity-check a cron line copied from a runbook before pasting it into crontab.",
+        "Confirm that an \"every 15 minutes\" expression fires 96 times per day, not 24.",
+        "Translate a complex cron such as 0 9-17/2 * * 1-5 into a sentence for documentation.",
+        "Preview when a backup job will next run after deployment.",
+        "Compare two cron expressions to see which one fires more frequently."
+      ],
+      "best_practices": [
+        "Document each cron job with a one-line English description in a comment.",
+        "Pick minute offsets randomly across jobs to avoid thundering-herd traffic at minute 0.",
+        "Use UTC for cron schedules when servers span timezones.",
+        "Treat day-of-month and day-of-week as OR — if both are restricted, the job runs on either match."
+      ],
+      "reference_table": {
+        "key_label": "Expression",
+        "value_label": "Meaning",
+        "rows": [
+          { "key": "* * * * *", "value": "Every minute" },
+          { "key": "*/5 * * * *", "value": "Every 5 minutes" },
+          { "key": "0 * * * *", "value": "Every hour at minute 0" },
+          { "key": "0 0 * * *", "value": "Every day at midnight" },
+          { "key": "0 9 * * 1-5", "value": "Weekdays at 9 AM" },
+          { "key": "0 0 1 * *", "value": "First day of every month at midnight" },
+          { "key": "30 2 * * 0", "value": "Sundays at 02:30" },
+          { "key": "0 0 1 1 *", "value": "Once a year on January 1st" }
+        ]
+      },
+      "faq_list": [
+        {
+          "q": "Does this parser support the seconds field?",
+          "a": "No. It supports the standard five-field Vixie cron syntax. Quartz-style six- or seven-field expressions are not accepted."
+        },
+        {
+          "q": "What timezone are the previewed runs in?",
+          "a": "Your local browser timezone. Some schedulers (such as Kubernetes) interpret cron in UTC by default, which can cause confusion."
+        },
+        {
+          "q": "Why is day-of-week 0 and 7 both Sunday?",
+          "a": "Historical Vixie cron quirk — 0 and 7 are both Sunday so that schedules using either convention work."
+        },
+        {
+          "q": "Can step values exceed the field range?",
+          "a": "No. */60 in the minute field is invalid because it would exceed 59. The parser will report this as an error."
+        }
+      ]
+    },
+    "http-status": {
+      "name": "HTTP Status Codes",
+      "description": "Searchable reference of every HTTP status code and its meaning.",
+      "page_title": "HTTP Status Code Reference",
+      "page_desc": "Search the full list of HTTP status codes — from 100 Continue to 511 Network Authentication Required — with concise explanations.",
+      "seo_desc": "Searchable HTTP status code reference. Full list of 1xx, 2xx, 3xx, 4xx, and 5xx codes with concise explanations and common pitfalls.",
+      "search_label": "Search",
+      "search_placeholder": "Search by code or name (e.g. 404, gateway, 2xx)...",
+      "no_results": "No status codes match your search.",
+      "category_1xx": "1xx Informational",
+      "category_2xx": "2xx Success",
+      "category_3xx": "3xx Redirection",
+      "category_4xx": "4xx Client Error",
+      "category_5xx": "5xx Server Error",
+      "faq_title": "HTTP status code anatomy",
+      "faq_text": [
+        "HTTP status codes are three-digit numbers returned by a server in response to every request. The first digit identifies the class of response: 1xx is informational, 2xx is success, 3xx is redirection, 4xx is client error (the request was malformed or unauthorised), and 5xx is server error (the server failed to fulfil a valid request). The remaining two digits identify the specific condition.",
+        "The codes are defined by RFC 9110 (the current HTTP semantics specification, replacing RFC 7231) and a handful of supplementary RFCs. Every well-behaved server should return the most specific code that applies — for example 422 Unprocessable Entity is more useful than a generic 400 when the request body is syntactically valid but semantically wrong.",
+        "Use the search box to filter by numeric code, name, or category. The reference covers all standard codes plus the most commonly seen unofficial codes (418 I'm a teapot, 451 Unavailable For Legal Reasons, Cloudflare's 5xx range)."
+      ],
+      "use_cases": [
+        "Look up what 422 means before designing a validation API.",
+        "Decide between 401 Unauthorized and 403 Forbidden when writing an authentication middleware.",
+        "Confirm that the response your CDN is returning matches the documented code.",
+        "Train a new engineer on the difference between 301 and 308 redirects.",
+        "Quickly explain a Cloudflare 525 to a non-technical stakeholder."
+      ],
+      "best_practices": [
+        "Return 401 for missing or invalid credentials and 403 for authenticated-but-unauthorised users — they are not interchangeable.",
+        "Prefer 308 over 301 when redirecting non-GET methods so the request method is preserved.",
+        "Use 503 with a Retry-After header for planned maintenance windows.",
+        "Never return 200 with an error body — clients will treat the response as success and ignore the embedded error.",
+        "Match Cache-Control to the status: 4xx and 5xx responses should usually be marked no-store."
+      ],
+      "faq_list": [
+        {
+          "q": "What is the difference between 401 and 403?",
+          "a": "401 means \"you are not authenticated\" — credentials are missing or wrong. 403 means \"you are authenticated but not authorised\" — the server knows who you are and refuses anyway."
+        },
+        {
+          "q": "When should I use 422 instead of 400?",
+          "a": "422 Unprocessable Entity signals that the request body parsed correctly but failed semantic validation. 400 Bad Request signals a malformed request the server could not parse at all."
+        },
+        {
+          "q": "Is 418 a real status code?",
+          "a": "It is reserved by RFC 2324 (the Hyper Text Coffee Pot Control Protocol April Fool's joke). Major frameworks ship it as a curiosity but no real API should use it."
+        },
+        {
+          "q": "What does 308 do that 301 does not?",
+          "a": "308 Permanent Redirect requires the client to repeat the request with the same method. 301 historically allowed clients to switch from POST to GET, which can break non-idempotent operations."
+        }
+      ]
+    },
+    "qr-code": {
+      "name": "QR Code Generator",
+      "description": "Create scannable QR codes for URLs, text, or contact info.",
+      "page_title": "QR Code Generator",
+      "page_desc": "Type any text or URL to generate a scannable QR code. Download the result as a PNG or SVG.",
+      "seo_desc": "Free online QR code generator — create QR codes for URLs, Wi-Fi credentials, and contact info. Download as PNG or SVG. Runs locally in the browser.",
+      "input_label": "Text or URL",
+      "input_placeholder": "https://example.com",
+      "size": "Size",
+      "ec_level": "Error correction",
+      "ec_low": "Low (~7%)",
+      "ec_medium": "Medium (~15%)",
+      "ec_quartile": "Quartile (~25%)",
+      "ec_high": "High (~30%)",
+      "download_png": "Download PNG",
+      "download_svg": "Download SVG",
+      "faq_title": "How QR codes work",
+      "faq_text": [
+        "A QR code (Quick Response code) is a two-dimensional barcode invented by Denso Wave in 1994. Unlike one-dimensional barcodes, a QR code can store thousands of characters in a single square and is scannable from any rotation. The three large squares at the corners are position markers; the smaller squares dotted across the grid are alignment markers. Reed–Solomon error correction is woven into the encoded data so the code remains scannable even when up to 30 percent of it is obscured.",
+        "This generator uses the qrcode library to render QR symbols on an HTML5 canvas. You can choose the error-correction level (L, M, Q, or H) and the rendered size. Higher error correction means more redundancy and a denser grid; pick H if you plan to overlay a logo or print on a physical surface that may scuff. PNG output is good for the web; SVG output scales without quality loss and is preferable for print."
+      ],
+      "use_cases": [
+        "Embed a meeting link on a slide so attendees can scan it with their phone.",
+        "Print a Wi-Fi credentials QR code for guests using the WIFI:T:WPA;S:...; payload format.",
+        "Add a vCard QR code to a business card so contacts save automatically.",
+        "Generate a paylink for an in-person purchase.",
+        "Place a QR code on packaging that opens an instructional video."
+      ],
+      "best_practices": [
+        "Use the highest error correction (H) when overlaying a logo on the QR code.",
+        "Keep a quiet zone (white margin) of at least four modules around the symbol — without it many scanners fail.",
+        "Test the printed result with a real phone scanner; on-screen previews can hide rendering bugs.",
+        "Prefer SVG when the QR code will be resized; rasterised scaling introduces artefacts.",
+        "For URLs, use a redirect domain you control so you can change the destination without reprinting the code."
+      ],
+      "faq_list": [
+        {
+          "q": "Is the input sent to a server?",
+          "a": "No. QR rendering happens entirely in your browser using the qrcode JavaScript library. We never see what you encode."
+        },
+        {
+          "q": "What is the maximum capacity?",
+          "a": "Around 4,296 alphanumeric characters or 2,953 bytes at the lowest error correction. In practice keep payloads short for reliable scanning."
+        },
+        {
+          "q": "Why does the same text produce a slightly different image each time?",
+          "a": "The encoder picks the smallest version (size) and mask pattern that fits. If you change the error-correction level the image changes too."
+        },
+        {
+          "q": "Can I generate QR codes for Wi-Fi or vCard?",
+          "a": "Yes — paste the appropriate payload format (WIFI:T:WPA;S:NetworkName;P:Password;; for Wi-Fi, BEGIN:VCARD...END:VCARD for vCards) into the input."
         }
       ]
     }

@@ -1,10 +1,24 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useSyncExternalStore } from "react";
 import { useDict } from "@/lib/DictContext";
 import ToolLayout from "@/components/tools/ToolLayout";
 import CopyButton from "@/components/tools/CopyButton";
 import ToolContent from "@/components/tools/ToolContent";
+
+function subscribeToTick(callback: () => void) {
+  const id = setInterval(callback, 1000);
+  return () => clearInterval(id);
+}
+function getNowMs() {
+  return Date.now();
+}
+function getServerSnapshot() {
+  return 0;
+}
+function useNowMs() {
+  return useSyncExternalStore(subscribeToTick, getNowMs, getServerSnapshot);
+}
 
 function formatDate(d: Date) {
   return {
@@ -18,12 +32,10 @@ function formatDate(d: Date) {
 
 export default function TimestampPage() {
   const t = useDict().tools.timestamp;
-  const [now, setNow] = useState<Date | null>(null);
+  const nowMs = useNowMs();
   const [input, setInput] = useState("");
   const [result, setResult] = useState<ReturnType<typeof formatDate> | null>(null);
   const [error, setError] = useState("");
-
-  useEffect(() => { setNow(new Date()); const id = setInterval(() => setNow(new Date()), 1000); return () => clearInterval(id); }, []);
 
   function convert() {
     const val = input.trim();
@@ -47,11 +59,11 @@ export default function TimestampPage() {
 
   return (
     <ToolLayout title={t.page_title} description={t.page_desc}>
-      {now && (
+      {nowMs > 0 && (
         <div className="rounded-lg border border-zinc-200 bg-zinc-50 p-4 dark:border-zinc-700 dark:bg-zinc-900">
           <div className="text-xs uppercase tracking-wider text-zinc-400">{t.current_time}</div>
-          <div className="mt-1 font-mono text-lg">{Math.floor(now.getTime() / 1000)}</div>
-          <div className="mt-0.5 text-sm text-zinc-500">{now.toISOString()}</div>
+          <div className="mt-1 font-mono text-lg">{Math.floor(nowMs / 1000)}</div>
+          <div className="mt-0.5 text-sm text-zinc-500">{new Date(nowMs).toISOString()}</div>
         </div>
       )}
       <div className="space-y-2">
