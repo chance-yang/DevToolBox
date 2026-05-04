@@ -1,5 +1,6 @@
 import { toolMeta } from "@/lib/seo";
 import { getDictionary, type Locale } from "@/lib/i18n";
+import ToolJsonLd from "@/components/seo/ToolJsonLd";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -8,6 +9,18 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return toolMeta(t.page_title, t.seo_desc, `/${locale}/tools/http-status`);
 }
 
-export default function Layout({ children }: { children: React.ReactNode }) {
-  return children;
+export default async function Layout({
+  children,
+  params,
+}: {
+  children: React.ReactNode;
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  return (
+    <>
+      <ToolJsonLd toolKey="http-status" locale={locale} />
+      {children}
+    </>
+  );
 }
